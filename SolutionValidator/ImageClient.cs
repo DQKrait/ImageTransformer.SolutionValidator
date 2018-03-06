@@ -18,7 +18,7 @@ namespace SolutionValidator
         {
             var image = File.ReadAllBytes(path);
 
-            var result = client.SendAsync(new HttpRequestMessage(HttpMethod.Post, $"{serviceUrl}/process/{transform}/{coords}") { Content = new ByteArrayContent(image) } ).Result;
+            var result = client.SendAsync(new HttpRequestMessage(HttpMethod.Post, $"{serviceUrl.TrimEnd('/')}/process/{transform}/{coords}") { Content = new ByteArrayContent(image) } ).Result;
             if (!result.IsSuccessStatusCode)
             {
                 Console.WriteLine("Request failed with code " + result.StatusCode);
